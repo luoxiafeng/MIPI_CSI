@@ -28,7 +28,7 @@ extern "C"
 //#define csi register 
 #define CSI_REG_BASE			(0x22200000)
 
-#define CSI2_VERSION_REG 		(0x000) //32 bits R version of csi-2 host controller
+#define CSI2_VERSION_REG 		(0x000) //32 bits R version of csi-2 host controller 表示硬件版本
 #define CSI2_N_LANES_REG 		(0x004) //2 bits R/W num of active data lanes 
 #define CSI2_DPHY_SHUTDOWN_REG  (0x008) //1 bit R/W PHY shutdown 
 #define CSI2_DPHYRST_REG        (0x00C) //1 bit R/W DPHY reset
