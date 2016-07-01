@@ -29,23 +29,27 @@ extern "C"
 #define CSI_REG_BASE			(0x22200000)
 
 #define CSI2_VERSION_REG 		(0x000) //32 bits R version of csi-2 host controller 表示硬件版本
-#define CSI2_N_LANES_REG 		(0x004) //2 bits R/W num of active data lanes 
-#define CSI2_DPHY_SHUTDOWN_REG  (0x008) //1 bit R/W PHY shutdown 
-#define CSI2_DPHYRST_REG        (0x00C) //1 bit R/W DPHY reset
-#define CSI2_RESET_REG			(0x010) //1 bit R/W CSI controller reset	
-#define CSI2_DPHY_STATE_REG		(0x014) //12 bits R PHY state 
-#define CSI2_DATA_IDS_1_REG     (0x018) 
+#define CSI2_N_LANES_REG 		(0x004) //2 bits R/W num of active data lanes 表示LANE的个数
+#define CSI2_DPHY_SHUTDOWN_REG  (0x008) //1 bit R/W PHY shutdown 这个寄存器用来关闭D-PHY的电源
+#define CSI2_DPHYRST_REG        (0x00C) //1 bit R/W DPHY reset 这个寄存器用来对D-PHY进行复位
+#define CSI2_RESET_REG			(0x010) //1 bit R/W CSI controller reset 这个寄存器用来对CSI-2控制器进行复位	
+#define CSI2_DPHY_STATE_REG		(0x014) //12 bits R PHY state 获取D-PHY的状态寄存器。这是只读寄存器。
+#define CSI2_DATA_IDS_1_REG     (0x018) //这个是LINE边界匹配失败时候报错的LINE id标识
 //32 bits R/W list of which ids report line boundary error
-#define CSI2_DATA_IDS_2_REG		(0x01C) //32 bits R/W
-#define CSI2_ERR1_REG			(0x020) //29 bits R error state register 1
-#define CSI2_ERR2_REG			(0x024) //24 bits R error state 2
-#define CSI2_MASK1_REG			(0x028) //29 bits R/w mask for error 1
-#define CSI2_MASK2_REG			(0x02C) //24 bits R/W mask for error 2
-#define CSI2_DPHY_TST_CRTL0_REG	(0x030) //2 bits  R/W DPHY test interface control 0
-#define CSI2_DPHY_TST_CRTL1_REG	(0x034) //17 bits R/W DPHY test interface control 1
+#define CSI2_DATA_IDS_2_REG		(0x01C) //32 bits R/W 也就是说，哪个LINE的边界匹配发生了错误，其id号就会被报告
+#define CSI2_ERR1_REG			(0x020) //29 bits R error state register 1 错误状态寄存器1
+#define CSI2_ERR2_REG			(0x024) //24 bits R error state 2          错误状态寄存器2
+#define CSI2_MASK1_REG			(0x028) //29 bits R/w mask for error 1   错误屏蔽寄存器1
+#define CSI2_MASK2_REG			(0x02C) //24 bits R/W mask for error 2   错误屏蔽寄存器2
+#define CSI2_DPHY_TST_CRTL0_REG	(0x030) //2 bits  R/W DPHY test interface control 0  D-PHY的测试控制接口0
+#define CSI2_DPHY_TST_CRTL1_REG	(0x034) //17 bits R/W DPHY test interface control 1  D-PHY的测试控制接口1
 
-//#define 
-#define CSI2_VERSION_ID			(0x3130322a)
+
+/*
+*下面定义的全部是代码中需要使用的宏定义
+*/
+
+#define CSI2_VERSION_ID			(0x3130322a)  //这个是版本号
 
 //#define postion and width
 #define CSI2_N_LANES				(0)
@@ -62,9 +66,9 @@ extern "C"
 #define CSI2_PHY_STOPSTATEDATA_2	(6)
 #define CSI2_PHY_STOPSTATEDATA_3	(7)
 #define CSI2_PHY_RXCLKACTIVEHS		(8)
-#define CSI2_PHY_RXULPSCLKNOT		(9)
-#define CSI2_PHY_STOPSTATECLK       (10)
-#define CSI2_PHY_BYPASS_2ECC_TST	(11)
+#define CSI2_PHY_RXULPSCLKNOT		(9)      //
+#define CSI2_PHY_STOPSTATECLK       (10) //CLK停止
+#define CSI2_PHY_BYPASS_2ECC_TST	(11)   //BY-PASS
 //data ids 1
 #define CSI2_DI0_DT					(0)
 #define CSI2_DI0_VC					(6)
