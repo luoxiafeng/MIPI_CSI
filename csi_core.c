@@ -309,6 +309,7 @@ lane_err:
 
 }
 
+//打开一个二进制文件。这个文件应该是周总自己造的数据。
 error_t csi_core_open(void)
 {
 	error_t ret = SUCCESS;
@@ -322,8 +323,9 @@ error_t csi_core_open(void)
 	}
 	//csi2_set_clock();
 	//set phy lane number
+	//就是往CSI-2 PHY test寄存器中写1. 就是clear。
 	csi2_phy_test_clear();
-	
+	//这里就是设置寄存器。00，表示LANE0;01表示LANE0和LANE1；10表示LANE0和LANE1和LANE2；11表示LANE0/1/2/3
 	ret = csi2_phy_set_lanes(g_host.lanes);
 	if(SUCCESS != ret) {
 	
@@ -331,6 +333,7 @@ error_t csi_core_open(void)
 		goto lane_err;
 	}
 #if 1
+	//csi-2 PHY上电。就是往对应的寄存器中写1.没啥难度。
 	csi2_phy_poweron(CSI_ENABLE);
 	//reset phy
 	ret = csi2_phy_reset();
