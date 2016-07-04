@@ -26,13 +26,14 @@ extern volatile int ret_flag;
 static int csi_fd = 0;
 extern csi_dma_config_t gdcfg;
 
+//这就是一个中断处理函数，而且这个函数仅仅是为了测试中断是否能产生
 int csi_irq1_handler(int irq, void *args)
 {
 	//csi irq handler
 	printf("in error1 interrupt . error status 0x%x\n", csi_core_read_reg(CSI2_ERR1_REG));
 	return 0;
 }
-
+//这就是一个中断处理函数，而且这个函数仅仅是为了测试中断是否能产生
 int csi_irq2_handler(int irq, void *args)
 {
 	//csi irq2 handler
@@ -40,7 +41,7 @@ int csi_irq2_handler(int irq, void *args)
 	printf("in error2 interrupt . error status 0x%x\n", csi_core_read_reg(CSI2_ERR2_REG));	
 	return 0;
 }
-
+//相比较而言，这个中断处理函数就比较有意义。
 int csi_irq0_handler(int irq, void *args)
 {
 	//csi irq0 for dma transfer data
