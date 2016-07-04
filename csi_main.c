@@ -312,20 +312,22 @@ int csi_test_main(int argc, char *argv[])
 
 		flag++;
 	}
-
+	//如果命令行第二个参数是HP，帮助，则打印帮助信息
 	if(0 == strncmp(HP, argv[1], CSI_CMD_LEN)) {
 		//display command help
 		//TODO
 		csi_hp_command();
 	}
 	else if(0 == strncmp(VR, argv[1], CSI_CMD_LEN)) {
-		
+	//如果命令行第二个参数是VR，获取CSI-2的版本信息。就是读取寄存器。	
 		printf("Get the CSI controller version :0x%x\n", csi_core_get_version());	
 	}
 	else if(0 == strncmp(ST, argv[1], CSI_CMD_LEN)) {
+	//如果命令行第二个参数是ST,获取CSI-2的lane状态寄存器的值。
 		printf("Current CSI lanes status :0x%x\n", csi_core_get_state());
 	}
 	else if(0 == strncmp(OP, argv[1], CSI_CMD_LEN)) {
+	//如果命令行第二个参数是OP,open表示打开操作。则调用core的open函数。
 		ret = csi_core_open();
 		if(SUCCESS != ret) {
 			CSI_ERR("open csi failure\n");
